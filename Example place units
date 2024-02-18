@@ -1,0 +1,148 @@
+-- Raid Mugen Train for Monkung
+local function placeTower(towerName, position)
+    local args = {
+        [1] = towerName,
+        [2] = position * CFrame.Angles(0, 0, 0)
+    }
+
+    game:GetService("ReplicatedStorage").Event.TowerOn:FireServer(unpack(args))
+end
+
+local function placeKumi()
+    local args = {
+        [1] = "Slot1"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("Kumi", CFrame.new(169, 2, 80))
+    placeTower("Kumi", CFrame.new(173,2,80))
+end
+
+local function placeAkaza()
+    local args = {
+        [1] = "Slot2"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("Akaza", CFrame.new(170,2,84))
+    placeTower("Akaza", CFrame.new(174,2,83))
+end
+
+local function placeBocchi()
+    local args = {
+        [1] = "Slot6"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("Bocchi", CFrame.new(175,2,87))
+end
+
+local function placeBulma()
+    local args = {
+        [1] = "Slot5"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("Bulma", CFrame.new(186,2,22))
+    placeTower("Bulma", CFrame.new(189,2,25))
+    placeTower("Bulma", CFrame.new(191,2,28))
+end
+
+local function placeCrocodileEv()
+    local args = {
+        [1] = "Slot3"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("CrocodileEv", CFrame.new(171,2,87))
+    placeTower("CrocodileEv", CFrame.new(170,2,77))
+    placeTower("CrocodileEv", CFrame.new(173,2,77))
+end
+
+local function placeBuuEv()
+    local args = {
+        [1] = "Slot4"
+    }
+    game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Frame.LocalScript.RemoteEvent:FireServer(unpack(args))
+
+    placeTower("BuuEv", CFrame.new(177,2,83))
+    placeTower("BuuEv", CFrame.new(178,2,87))
+    placeTower("BuuEv", CFrame.new(167,2,88))
+    placeTower("BuuEv", CFrame.new(167,2,85))
+end
+
+wait(5)
+
+for i = 1, 13 do
+    placeKumi()
+    wait(5)
+end
+
+for i = 1, 5 do
+    placeAkaza()
+    wait(5)
+end
+
+for i = 1, 5 do
+    placeBulma()
+    wait(5)
+end
+
+for i = 1, 5 do
+    placeCrocodileEv()
+    wait(5)
+end
+
+for i = 1, 5 do
+    placeBocchi()
+    wait(5)
+end
+
+local function upgradeBulma()
+    for i = 1, 30 do
+        local bulma = workspace.PlayerFodel.Npc:FindFirstChild("Bulma")
+        if bulma then
+            if bulma:FindFirstChild("Owner") and bulma.Owner.Value == game.Players:FindFirstChild("thethak2545") then
+                local remoteEvent = game.Players:FindFirstChild("thethak2545").PlayerGui.UpLevel.Frame.Uplevel.LocalScript.RemoteEvent
+                if remoteEvent then
+                    remoteEvent:FireServer(bulma)
+                end
+            end
+        end
+        wait(5)
+    end
+end
+
+local function upgradeBocchi()
+    for i = 1, 30 do
+        local bocchi = workspace.PlayerFodel.Npc:FindFirstChild("Bocchi")
+        if bocchi then
+            if bocchi:FindFirstChild("Owner") and bocchi.Owner.Value == game.Players:FindFirstChild("thethak2545") then
+                local remoteEvent = game.Players:FindFirstChild("thethak2545").PlayerGui.UpLevel.Frame.Uplevel.LocalScript.RemoteEvent
+                if remoteEvent then
+                    remoteEvent:FireServer(bocchi)
+                end
+            end
+        end
+        wait(5)
+    end
+end
+
+local function upgradeAllNpcs()
+    while true do
+        local npcs = workspace.PlayerFodel.Npc:GetChildren()
+        for _, npc in ipairs(npcs) do
+            if npc:FindFirstChild("Owner") and npc.Owner.Value == game.Players:FindFirstChild("thethak2545") then
+                local remoteEvent = game.Players:FindFirstChild("thethak2545").PlayerGui.UpLevel.Frame.Uplevel.LocalScript.RemoteEvent
+                if remoteEvent then
+                    remoteEvent:FireServer(npc)
+                end
+            end
+        end
+        wait(1)
+    end
+end
+
+spawn(upgradeBulma)
+spawn(upgradeBocchi)
+spawn(upgradeAllNpcs)
